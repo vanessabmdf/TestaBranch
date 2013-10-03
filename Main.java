@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Iterator;
+
 
 
 public class Main {
@@ -11,6 +13,15 @@ public class Main {
 		for (int i=0; i<3;i++){
 			cadastra();
 		}
+		
+		mostrarTodos();
+		
+		System.out.println("Qual pessoa deseja excluir ?");
+		String nomeDoExcluso = leitor.nextLine();
+		
+		excluir(nomeDoExcluso);
+		
+		mostrarTodos();
 	}
 	
 	private static void cadastra() {
@@ -22,4 +33,21 @@ public class Main {
 		listaDePessoas.add(novaPessoa);
 	}
 
+	private static void mostrarTodos(){
+		Iterator<Pessoa> percorre = listaDePessoas.iterator();
+		
+		while(percorre.hasNext()){
+			System.out.println(percorre.next().nome);
+		}
+	}
+	
+	private static void excluir(String nome){
+		Iterator<Pessoa> percorre = listaDePessoas.iterator();
+		
+		while(percorre.hasNext()){
+			if (nome == percorre.next().nome){
+				listaDePessoas.remove(percorre.next());
+			}
+		}
+	}
 }
